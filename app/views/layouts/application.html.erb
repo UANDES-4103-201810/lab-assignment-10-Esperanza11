@@ -9,30 +9,13 @@
   </head>
 
   <body>
-  <script>
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId      : '1942942812384186',
-              cookie     : true,
-              xfbml      : true,
-          });
-
-          FB.AppEvents.logPageView();
-
-      };
-
-      (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-  </script>
   <div style="align-self: right; overflow: auto">
     <div style="float: right"><%= link_to('Login', new_user_session_path)  %> </div>
     <div><br> </div>
    <div style="float: right"> <%= link_to('Logout', destroy_user_session_path, method: :delete) %>  </div>
+    <% if user_signed_in? %>
+    <br> <div style="float: right"><%= current_user.name %></div>
+    <% end %>
   </div>
     <%= yield %>
   </body>
